@@ -1,4 +1,4 @@
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Image, Row } from 'react-bootstrap'
 
 export default function Home() {
   return (
@@ -8,26 +8,43 @@ export default function Home() {
           <Card className="transparencia">
             <div className="d-flex justify-content-center">
               <div className="imagen-logo">
-                <img src="../images/SCMTLOGO.png" alt="SCMT" />
+                <Image src="/images/SCMTLogo.png" alt="SCMT Logo" />
               </div>
             </div>
-            <div className="card-header text-center">
-              Iniciar sesión
-            </div>
-            <div className="card-body">
+            <div className="card-header text-center">Iniciar sesión</div>
+            <div className="transparencia card-body">
               <form>
                 <div className="form-group">
-                  <label htmlFor="username">Usuario</label>
-                  <input type="text" id="usuario" className="form-control" placeholder="Ingresa usuario" />
+                  <label htmlFor="username" className="form-label">
+                    Usuario
+                  </label>
+                  <input
+                    type="text"
+                    id="usuario"
+                    className="form-control"
+                    placeholder="Ingresa usuario"
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="contrasenia">Contraseña</label>
-                  <input type="password" id="contrasenia" className="form-control" placeholder="Ingresa contraseña" />
+                  <label htmlFor="contrasenia" className="form-label">
+                    Contraseña
+                  </label>
+                  <input
+                    type="password"
+                    id="contrasenia"
+                    className="form-control"
+                    placeholder="Ingresa contraseña"
+                  />
                 </div>
                 <div className="container">
                   <div className="row justify-content-center">
                     <div className="col-md-4 text-center">
-                      <button type="button" className="btn btn-primary boton-ovalo">Iniciar Sesión</button>
+                      <button
+                        type="button"
+                        className="btn btn-primary boton-ovalo"
+                      >
+                        Iniciar Sesión
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -37,5 +54,5 @@ export default function Home() {
         </Col>
       </Row>
     </Container>
-  );
+  )
 }
