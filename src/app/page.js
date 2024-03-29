@@ -1,38 +1,40 @@
 'use client'
 import { Card, Col, Container, Image, Row } from 'react-bootstrap'
+import { useRouter } from 'next/navigation'
 import { Tarjet } from '@/utils/urls'
 
-const onSubmit = async (e) => {
-  e.preventDefault()
-  const usuario = e.target.usuario.value
-  const contrasenia = e.target.contrasenia.value
-  const cuerpo = new URLSearchParams('usuario=' + usuario)
-  cuerpo.append('contraseña', contrasenia)
-  try {
-    const respuesta = await fetch(Tarjet.userApi.login, {
-      method: 'POST',
-      body: cuerpo,
-    })
-    const res = await respuesta.json()
-    console.log(res)
-
-    if (res.success === true) {
-      console.log('Entra el usuario')
-      console.log(res.data.trol_id)
-      if (res.data.trol_id === 1) {
-        alert('Bienvenido administrador')
-      } else {
-        alert('Lo sentimos no eres administrador')
-      }
-    } else {
-      alert('Lo sentimos credenciales invalidas')
-    }
-  } catch (error) {
-    alert('Lo sentimo error en la peticion')
-  }
-}
-
 export default function Home() {
+  const router = useRouter()
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    const usuario = e.target.usuario.value
+    const contrasenia = e.target.contrasenia.value
+    const cuerpo = new URLSearchParams('usuario=' + usuario)
+    cuerpo.append('contraseña', contrasenia)
+    try {
+      const respuesta = await fetch(Tarjet.userApi.login, {
+        method: 'POST',
+        body: cuerpo,
+      })
+      const res = await respuesta.json()
+      console.log(res)
+
+      if (res.success === true) {
+        console.log('Entra el usuario')
+        console.log(res.data.trol_id)
+        if (res.data.trol_id === 1) {
+          router.push('/home')
+        } else {
+          alert('Lo sentimos no eres administrador')
+        }
+      } else {
+        alert('Lo sentimos credenciales invalidas')
+      }
+    } catch (error) {
+      alert('Lo sentimos error en la peticion')
+    }
+  }
+
   return (
     <Container>
       <Row className="justify-content-center mt-5">
