@@ -1,4 +1,16 @@
-export default function Control_usuarios() {
+"use client"
+import { UserController } from "@/app/home/control_usuarios/userController"
+async function loadData(){
+    const data = await UserController.getAll();
+    console.log(data)
+    return data
+}
+
+
+export default async function Control_usuarios() {
+    //console.log(sessionStorage.getItem('idUser'))
+    let i = 1;
+    const data = await loadData();
     return (
         <div className="container py-4">
             <div className="row">
@@ -23,7 +35,17 @@ export default function Control_usuarios() {
                             <th scope="col">Eliminar</th>
                         </tr>
                     </thead>
-                    <tbody id="contenido">
+                    <tbody>
+                    {data.map(e => (
+            <tr key={e.id}>
+            <td>{i++}</td>
+            <td>{e.nombre +  " " + e.primer_apellido +  " " + e.segundo_apellido}</td>
+            <td>{e.trol_id}</td>
+            <td>{e.usuario}</td>
+            <td>{e.tcompania_id}</td>
+            
+        </tr>
+        ))}
                     </tbody>
                 </table>
             </div>
