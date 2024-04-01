@@ -1,7 +1,8 @@
-'use client'
-import { Card, Col, Container, Image, Row } from 'react-bootstrap'
-import { useRouter } from 'next/navigation'
-import { Tarjet } from '@/utils/urls'
+"use client"
+import { Card, Col, Container, Row } from "react-bootstrap";
+import { useRouter } from "next/navigation";
+import { Tarjet } from "@/utils/urls";
+import { Utils } from "@/utils/utils";
 
 export default function Home() {
   const router = useRouter()
@@ -20,21 +21,19 @@ export default function Home() {
       console.log(res)
 
       if (res.success === true) {
-        console.log('Entra el usuario')
-        console.log(res.data.trol_id)
         if (res.data.trol_id === 1) {
-          router.push('/home')
+          sessionStorage.setItem('idUser', res.data.id);
+          router.push("/home")
         } else {
-          alert('Lo sentimos no eres administrador')
+          Utils.swalFailure("Lo sentimos", "No eres administrador");
         }
       } else {
-        alert('Lo sentimos credenciales invalidas')
+        Utils.swalFailure("Lo sentimos", "Usuario o contraseña invalidos")
       }
     } catch (error) {
-      alert('Lo sentimos error en la peticion')
+      Utils.swalError("Error en la petición")
     }
-  }
-
+  };
   return (
     <Container>
       <Row className="justify-content-center mt-5">
