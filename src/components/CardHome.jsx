@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 export default function CardHome({ title, icon, href }) {
   return (
@@ -20,5 +20,5 @@ export default function CardHome({ title, icon, href }) {
         </Link>
       </div>
     </div>
-  )
+  );
 }

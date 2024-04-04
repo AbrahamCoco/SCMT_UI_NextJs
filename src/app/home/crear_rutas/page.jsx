@@ -1,4 +1,4 @@
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Row } from "react-bootstrap";
 
 export default function CrearRutas() {
   return (
@@ -14,5 +14,5 @@ export default function CrearRutas() {
         </Col>
       </Row>
     </Container>
-  )
+  );
 }

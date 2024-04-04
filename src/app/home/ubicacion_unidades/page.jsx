@@ -1,4 +1,4 @@
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Row } from "react-bootstrap";
 
 export default function UbicacionUnidades() {
   return (
@@ -9,5 +9,5 @@ export default function UbicacionUnidades() {
         </Col>
       </Row>
     </Container>
-  )
+  );
 }

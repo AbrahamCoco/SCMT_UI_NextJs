@@ -1,12 +1,12 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-import '../css/styles.css'
-import BodyClient from '@/components/BodyClient'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../css/styles.css";
+import BodyClient from "@/components/BodyClient";
 
 export const metadata = {
-  title: 'SCMT - Inicio de sesión',
+  title: "SCMT - Inicio de sesión",
   description:
-    'En esta pagina solo inician sesion los administradores de la empresa SCMT',
-}
+    "En esta pagina solo inician sesion los administradores de la empresa SCMT",
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -45,5 +45,5 @@ export default function RootLayout({ children }) {
       </head>
       <BodyClient>{children}</BodyClient>
     </html>
-  )
+  );
 }

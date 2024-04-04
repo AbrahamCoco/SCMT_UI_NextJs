@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { Col } from 'react-bootstrap'
+import Link from "next/link";
+import { Col } from "react-bootstrap";
 
 export default function CardInforme({ title, description, href }) {
   return (
@@ -19,5 +19,5 @@ export default function CardInforme({ title, description, href }) {
         </div>
       </div>
     </Col>
-  )
+  );
 }

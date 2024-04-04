@@ -1,4 +1,4 @@
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Row } from "react-bootstrap";
 
 export default function Incidencias() {
   return (
@@ -32,5 +32,5 @@ export default function Incidencias() {
         </table>
       </div>
     </Container>
-  )
+  );
 }

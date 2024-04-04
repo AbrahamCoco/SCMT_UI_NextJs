@@ -1,6 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-import '../../css/styles.css'
-import CardHome from '@/components/CardHome'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../../css/styles.css";
+import CardHome from "@/components/CardHome";
 
 export default function Home() {
   return (
@@ -42,11 +42,6 @@ export default function Home() {
           <CardHome title="Info" icon="bxs-info" href="/home/#" />
         </div>
       </div>
-      {/* <Link href="/">
-                <button>
-                    Regresar al home
-                </button>
-            </Link> */}
     </>
-  )
+  );
 }
