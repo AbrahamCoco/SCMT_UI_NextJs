@@ -1,8 +1,39 @@
+"use client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../css/styles.css";
-import CardHome from "@/components/CardHome";
+import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    if (sessionStorage.getItem("idUser")) {
+      document.body.classList.add("fondo");
+      document.body.classList.remove("inicio");
+    }
+  });
+  function CardHome({ title, icon, href }) {
+    return (
+      <div className="col-4">
+        <div className="card transparencia m-3 p-2">
+          <div className="card-header">
+            <div className="color-texto">{title}</div>
+          </div>
+          <div className="card-body">
+            <i className={`bx ${icon} icono-personalizado`}></i>
+          </div>
+          <Link href={href}>
+            <button
+              type="submit"
+              className="btn btn-info d-block mx-auto btn-padding"
+            >
+              Administrar
+            </button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="container padding-container ">

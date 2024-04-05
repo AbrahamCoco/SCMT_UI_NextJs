@@ -1,30 +1,18 @@
 "use client";
 import Link from "next/link";
 import "../css/styles.css";
-import { useEffect } from "react";
-import { Image } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const router = useRouter();
+
   useEffect(() => {
-    const verificarSesion = () => {
-      if (
-        !sessionStorage.getItem("nombre") ||
-        !sessionStorage.getItem("descripcion") ||
-        !sessionStorage.getItem("foto") ||
-        !sessionStorage.getItem("telefono")
-      ) {
-        const nombre = sessionStorage.getItem("nombre") || "";
-        const descripcion = sessionStorage.getItem("descripcion") || "";
-        const foto = sessionStorage.getItem("foto") || "";
-        const telefono = sessionStorage.getItem("telefono") || "";
-
-        console.log(nombre, descripcion, foto, telefono);
-        // window.location.href = "/";
-      }
-    };
-
-    verificarSesion();
-
+    if (!sessionStorage.getItem("idUser")) {
+      // Agregar clase al body si el usuario no está autenticado
+      document.body.classList.add("inicio");
+      document.body.classList.remove("fondo");
+    }
     // Verifica si estamos en el navegador antes de ejecutar el código
     if (typeof window !== "undefined") {
       let btn = document.querySelector("#btn");
@@ -62,8 +50,25 @@ export default function Navbar() {
           }
         }
       });
+
+      let nombre = sessionStorage.getItem("nombre"),
+        descripcionn = sessionStorage.getItem("descripcion"),
+        fotoo = sessionStorage.getItem("foto"),
+        tel = sessionStorage.getItem("telefono");
+      document.getElementById("foto_perfil").src = fotoo;
+      document.getElementById("nombreMenu").innerHTML =
+        `<p>Hola ${nombre}</p> <p>Descripción: ${descripcionn}</p><p>Telefono: ${tel}</p>`;
+      document.getElementById("nombre_spam").innerHTML =
+        `<img src="${fotoo}" alt="Imagen de perfil" class="img-fluid espaciado-img bx" width="50" height="50"> <span class="link_name">${nombre}</span>`;
     }
-  }, []);
+  }, [router]);
+
+  function cerrarSesion() {
+    sessionStorage.clear();
+    document.body.classList.add("inicio");
+    document.body.classList.remove("fondo");
+    router.push("/");
+  }
 
   return (
     <>
@@ -160,7 +165,7 @@ export default function Navbar() {
             <div className="modal-body fondo borde">
               <div className="row d-flex align-items-center">
                 <div className="col-4">
-                  <Image
+                  <img
                     src=""
                     alt="Imagen de perfil"
                     id="foto_perfil"
@@ -176,7 +181,10 @@ export default function Navbar() {
               <button
                 type="button"
                 className="btn btn-danger"
-                onClick={() => $("#modal-Perfil").modal("hide")}
+                onClick={() => {
+                  cerrarSesion();
+                  $("#modal-Perfil").modal("hide");
+                }}
               >
                 Cerrar Sesión
               </button>

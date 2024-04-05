@@ -23,7 +23,20 @@ export default function Home() {
       if (res.success === true) {
         if (res.data.trol_id === 1) {
           sessionStorage.setItem("idUser", res.data.id);
+          sessionStorage.setItem(
+            "nombre",
+            res.data.nombre +
+              " " +
+              res.data.primer_apellido +
+              " " +
+              res.data.segundo_apellido,
+          );
+          sessionStorage.setItem("telefono", res.data.telefono);
+          sessionStorage.setItem("descripcion", res.data.descripcion);
+          sessionStorage.setItem("foto", res.data.fotografia);
           router.push("/home");
+          body.classList.remove("inicio");
+          body.classList.add("fondo");
         } else {
           Utils.swalFailure("Lo sentimos", "No eres administrador");
         }
