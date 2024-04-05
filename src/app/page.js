@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Tarjet } from "@/utils/urls";
 import { Utils } from "@/utils/utils";
 
-export default function Home() {
+export default function Login() {
   const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -35,8 +35,6 @@ export default function Home() {
           sessionStorage.setItem("descripcion", res.data.descripcion);
           sessionStorage.setItem("foto", res.data.fotografia);
           router.push("/home");
-          body.classList.remove("inicio");
-          body.classList.add("fondo");
         } else {
           Utils.swalFailure("Lo sentimos", "No eres administrador");
         }
