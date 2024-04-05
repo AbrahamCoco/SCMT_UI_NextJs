@@ -2,216 +2,216 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,400&display=swap');
 
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 80px;
-    background: #202124;
-    padding: 6px 16px;
-    height: 100%;
-    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.5s ease;
-    overflow: hidden;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 80px !important;
+    background: #202124 !important;
+    padding: 6px 16px !important;
+    height: 100% !important;
+    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.5s ease !important;
+    overflow: hidden !important;
     z-index: 5 !important;
 }
 
 .sidebar.active {
-    width: 240px;
+    width: 240px !important;
 }
 
 .sidebar .logo_content .logo {
-    display: flex;
-    color: #4ECDE6;
-    height: 50px;
-    width: 200px;
-    font-size: 30px;
-    margin-left: 5px;
-    align-items: center;
-    pointer-events: none;
-    opacity: 0;
-    transition: 0.3s;
+    display: flex !important;
+    color: #4ECDE6 !important;
+    height: 50px !important;
+    width: 200px !important;
+    font-size: 30px !important;
+    margin-left: 5px !important;
+    align-items: center !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    transition: 0.3s !important;
 }
 
 .sidebar.active .logo_content .logo {
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 .sidebar .logo_content .logo .logo_name {
-    font-size: 23px;
-    font-weight: 600;
-    margin: 0 10px;
+    font-size: 23px !important;
+    font-weight: 600 !important;
+    margin: 0 10px !important;
 }
 
 .sidebar #btn {
-    position: absolute;
-    color: #b3b3b3;
-    left: 50%;
-    top: 6px;
-    font-size: 20px;
-    height: 50px;
-    width: 50px;
-    text-align: center;
-    line-height: 50px;
-    transform: translate(-50%);
+    position: absolute !important;
+    color: #b3b3b3 !important;
+    left: 50% !important;
+    top: 6px !important;
+    font-size: 20px !important;
+    height: 50px !important;
+    width: 50px !important;
+    text-align: center !important;
+    line-height: 50px !important;
+    transform: translate(-50%) !important;
 }
 
 .sidebar.active #btn {
-    left: 85%;
+    left: 85% !important;
 }
 
 .sidebar .src {
-    position: relative;
-    height: 50px;
-    width: 100%;
-    margin-top: 20px;
+    position: relative !important;
+    height: 50px !important;
+    width: 100% !important;
+    margin-top: 20px !important;
 }
 
 .sidebar .src input {
-    position: absolute;
-    height: 100%;
-    width: calc(100% - 50px);
-    left: 0;
-    top: 0;
-    border-radius: 20px;
-    outline: none;
-    border: none;
-    background: #0b2997;
-    padding-left: 50px;
-    font-size: 15px;
-    color: #ffffff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.5s ease;
+    position: absolute !important;
+    height: 100% !important;
+    width: calc(100% - 50px) !important;
+    left: 0 !important;
+    top: 0 !important;
+    border-radius: 20px !important;
+    outline: none !important;
+    border: none !important;
+    background: #0b2997 !important;
+    padding-left: 50px !important;
+    font-size: 15px !important;
+    color: #ffffff !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.5s ease !important;
 }
 
 .sidebar .src .bx-search {
-    position: absolute;
-    z-index: 99;
-    font-size: 22px;
-    color: #ffffff;
-    transition: all 0.5s ease;
+    position: absolute !important;
+    z-index: 99 !important;
+    font-size: 22px !important;
+    color: #ffffff !important;
+    transition: all 0.5s ease !important;
 }
 
 .sidebar .src .bx-search:hover {
-    color: #0b2997;
+    color: #0b2997 !important;
 }
 
 .sidebar .src .bx-search:hover~input {
-    background: #ffffff;
+    background: #ffffff !important;
 }
 
 .sidebar i {
-    height: 50px;
-    min-width: 50px;
-    border-radius: 12px;
-    line-height: 50px;
-    text-align: center;
-    font-size: 25px;
+    height: 50px !important;
+    min-width: 50px !important;
+    border-radius: 12px !important;
+    line-height: 50px !important;
+    text-align: center !important;
+    font-size: 25px !important;
 }
 
 .sidebar ul {
-    margin-top: 20px;
+    margin-top: 20px !important;
 }
 
 .sidebar ul li {
-    position: relative;
-    height: 50px;
-    width: 100%;
-    margin: 0;
-    list-style: none;
-    line-height: 50px;
+    position: relative !important;
+    height: 50px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    list-style: none !important;
+    line-height: 50px !important;
 }
 
 .sidebar ul li .nav-selected {
-    background-color: #ffffff;
-    color: #0b2997;
+    background-color: #ffffff !important;
+    color: #0b2997 !important;
 }
 
 .sidebar ul li a {
-    color: #b3b3b3;
-    display: flex;
-    text-decoration: none;
-    align-items: center;
-    border-radius: 20px;
-    font-size: 13px;
-    white-space: nowrap;
-    transition: all 0.4s ease;
+    color: #b3b3b3 !important;
+    display: flex !important;
+    text-decoration: none !important;
+    align-items: center !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    transition: all 0.4s ease !important;
 }
 
 .sidebar ul li a:hover {
-    color: #0b2997;
-    background: #e7e9f5;
+    color: #0b2997 !important;
+    background: #e7e9f5 !important;
 }
 
 .sidebar .link_name {
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.5s ease;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: all 0.5s ease !important;
 }
 
 .sidebar.active .link_name {
-    opacity: 1;
-    pointer-events: auto;
+    opacity: 1 !important;
+    pointer-events: auto !important;
 }
 
 .sidebar ul li .tooltip {
-    position: absolute;
-    left: 130px;
-    top: 0;
-    transform: translate(-45%, -50%);
-    border-radius: 10px;
-    height: 35px;
-    width: 130px;
-    background: #ffffff;
-    line-height: 35px;
-    text-align: center;
-    font-size: 13px;
-    display: block;
-    color: #242424;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    pointer-events: none;
-    opacity: 0;
-    transition: all 0.5s ease;
+    position: absolute !important;
+    left: 130px !important;
+    top: 0 !important;
+    transform: translate(-45%, -50%) !important;
+    border-radius: 10px !important;
+    height: 35px !important;
+    width: 130px !important;
+    background: #ffffff !important;
+    line-height: 35px !important;
+    text-align: center !important;
+    font-size: 13px !important;
+    display: block !important;
+    color: #242424 !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    transition: all 0.5s ease !important;
 }
 
 .sidebar.active ul li .tooltip {
-    display: none;
+    display: none !important;
 }
 
 .sidebar ul li:hover .tooltip {
-    opacity: 1;
-    top: 50%;
+    opacity: 1 !important;
+    top: 50% !important;
 }
 
 .home_content {
-    position: absolute;
-    height: 100%;
-    width: calc(100%=300px);
-    left: 80px;
-    transition: all 0.5s ease;
+    position: absolute !important;
+    height: 100% !important;
+    width: calc(100%=300px) !important;
+    left: 80px !important;
+    transition: all 0.5s ease !important;
 }
 
 .home_content .text {
-    font-size: 25px;
-    font-weight: 500;
-    color: #242424;
-    padding: 12px 24px;
+    font-size: 25px !important;
+    font-weight: 500 !important;
+    color: #242424 !important;
+    padding: 12px 24px !important;
 }
 
 .sidebar.active~.home_content {
-    left: 300px;
+    left: 300px !important;
 }
 
 /* Estilos generales del sistema */
 
-/* .inicio {
-    background-image: url(../img/carretera-rodeada-colinas-cielo-nublado.jpg);
+.inicio {
+    background-image: url(../images/carretera-rodeada-colinas-cielo-nublado.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
-} */
+}
 
 .transparencia {
     background-color: rgba(255, 255, 255, 0.2) !important;
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 .fondo {
@@ -223,96 +223,104 @@
 }
 
 .nav-personal {
-    background-color: #202124;
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
+    background-color: #202124 !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    width: 100% !important;
 }
 
 .nav-personal-1 {
-    background-color: #202124;
-    display: flex;
-    justify-content: flex-start;
+    background-color: #202124 !important;
+    display: flex !important;
+    justify-content: flex-start !important;
 }
 
 .espaciado-img {
-    padding: 0.5rem 0.5rem;
-    border-radius: 3rem;
-    margin-bottom: 0rem;
+    padding: 0.5rem 0.5rem !important;
+    border-radius: 3rem !important;
+    margin-bottom: 0rem !important;
 }
 
 .img-redondo {
-    border-radius: 6rem;
+    border-radius: 6rem !important;
 }
 
 .espaciado-texto {
-    padding: 1.1rem 1rem;
-    margin: 0rem;
+    padding: 1.1rem 1rem !important;
+    margin: 0rem !important;
 }
 
 .color-texto {
-    color: #4ECDE6;
+    color: #4ECDE6 !important;
 }
 
 .padding-container {
-    padding: 2rem 0rem;
+    padding: 2rem 0rem !important;
 }
 
 a {
-    text-decoration: none;
-    color: black;
+    text-decoration: none !important;
+    color: black !important;
 }
 
 a:hover {
-    text-decoration: none;
-    color: white;
+    text-decoration: none !important;
+    color: white !important;
 }
 
 .btn-padding {
-    padding: .375rem 2.75rem;
+    padding: .375rem 2.75rem !important;
 }
 
 .btn-ubicacion {
-    margin: 2rem 0rem;
+    margin: 2rem 0rem !important;
 }
 
 .boton-ovalo {
-    border-radius: 1rem;
+    border-radius: 1rem !important;
 }
 
 .boton-ovalo:hover {
-    border-radius: 1rem;
-    color: black;
+    border-radius: 1rem !important;
+    color: black !important;
 }
 
 .borde {
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
+    border-bottom: 1px solid black !important;
+    border-top: 1px solid black !important;
 }
 
 .imagen-logo {
-    width: 480px;
-    height: 180px;
+    width: 480px !important;
+    height: 180px !important;
 }
 
 .imagen-logo img {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .icono-personalizado {
-    font-size: 6.3rem;
+    font-size: 6.3rem !important;
     text-align: center !important;
     display: block !important;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .fondo-blanco {
-    background: white;
-    color: black;
+    background: white !important;
+    color: black !important;
 }
 
 #map {
-    height: 500px;
-    width: 100%;
+    height: 500px !important;
+    width: 100% !important;
+}
+
+.icono {
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    font-size: 2.75rem;
+    color: #4ECDE6;
 }

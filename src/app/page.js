@@ -1,37 +1,50 @@
-"use client"
-import { Card, Col, Container, Row } from "react-bootstrap";
+"use client";
+import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import { Tarjet } from "@/utils/urls";
 import { Utils } from "@/utils/utils";
 
 export default function Home() {
   const router = useRouter();
-  const onSubmit = async (e) =>{
-    e.preventDefault()
+  const onSubmit = async (e) => {
+    e.preventDefault();
     const usuario = e.target.usuario.value;
     const contrasenia = e.target.contrasenia.value;
     const cuerpo = new URLSearchParams("usuario=" + usuario);
-    cuerpo.append('contraseña', contrasenia);
+    cuerpo.append("contraseña", contrasenia);
     try {
-      const respuesta = await fetch(Tarjet.userApi.login,{
-        method: 'POST',
-        body: cuerpo
+      const respuesta = await fetch(Tarjet.userApi.login, {
+        method: "POST",
+        body: cuerpo,
       });
       const res = await respuesta.json();
-      console.log(res)
-    
-      if(res.success === true){
-        if(res.data.trol_id === 1){
-          sessionStorage.setItem('idUser', res.data.id);
-          router.push("/home")
-        }else{
-          Utils.swalFailure("Lo sentimos","No eres administrador");
+      console.log(res);
+
+      if (res.success === true) {
+        if (res.data.trol_id === 1) {
+          sessionStorage.setItem("idUser", res.data.id);
+          sessionStorage.setItem(
+            "nombre",
+            res.data.nombre +
+              " " +
+              res.data.primer_apellido +
+              " " +
+              res.data.segundo_apellido,
+          );
+          sessionStorage.setItem("telefono", res.data.telefono);
+          sessionStorage.setItem("descripcion", res.data.descripcion);
+          sessionStorage.setItem("foto", res.data.fotografia);
+          router.push("/home");
+          body.classList.remove("inicio");
+          body.classList.add("fondo");
+        } else {
+          Utils.swalFailure("Lo sentimos", "No eres administrador");
         }
-      }else{
-        Utils.swalFailure("Lo sentimos","Usuario o contraseña invalidos")
+      } else {
+        Utils.swalFailure("Lo sentimos", "Usuario o contraseña invalidos");
       }
     } catch (error) {
-      Utils.swalError("Error en la petición")
+      Utils.swalError("Error en la petición");
     }
   };
   return (
@@ -41,26 +54,40 @@ export default function Home() {
           <Card className="transparencia">
             <div className="d-flex justify-content-center">
               <div className="imagen-logo">
-                <img src="/images/SCMTLOGO.png" alt="SCMT" />
+                <Image src="/images/SCMTLOGO.png" alt="SCMT" />
               </div>
             </div>
-            <div className="card-header text-center">
-              Iniciar sesión
-            </div>
-            <div className="card-body">
+            <div className="card-header text-center">Iniciar sesión</div>
+            <div className="transparencia card-body">
               <form onSubmit={onSubmit}>
                 <div className="form-group">
-                  <label htmlFor="username">Usuario</label>
-                  <input type="text" id="usuario" className="form-control" placeholder="Ingresa usuario" />
+                  <label htmlFor="username" className="form-label">
+                    Usuario
+                  </label>
+                  <input
+                    type="text"
+                    id="usuario"
+                    className="form-control"
+                    placeholder="Ingresa usuario"
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="contrasenia">Contraseña</label>
-                  <input type="password" id="contrasenia" className="form-control" placeholder="Ingresa contraseña" />
+                  <label htmlFor="contrasenia" className="form-label">
+                    Contraseña
+                  </label>
+                  <input
+                    type="password"
+                    id="contrasenia"
+                    className="form-control"
+                    placeholder="Ingresa contraseña"
+                  />
                 </div>
                 <div className="container">
                   <div className="row justify-content-center">
                     <div className="col-md-4 text-center">
-                      <button className="btn btn-primary boton-ovalo">Iniciar Sesión</button>
+                      <button className="btn btn-primary boton-ovalo">
+                        Iniciar Sesión
+                      </button>
                     </div>
                   </div>
                 </div>
