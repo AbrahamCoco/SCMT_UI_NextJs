@@ -3,8 +3,20 @@ import Link from "next/link";
 import "../css/styles.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Image from "react-bootstrap/Image";
 
 export default function Navbar() {
+  const [show, setShow] = useState(false);
+  const [nombre, setNombre] = useState("");
+  const [descripcionn, setDescripcionn] = useState("");
+  const [fotoo, setFotoo] = useState("");
+  const [tel, setTel] = useState("");
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -51,15 +63,10 @@ export default function Navbar() {
         }
       });
 
-      let nombre = sessionStorage.getItem("nombre"),
-        descripcionn = sessionStorage.getItem("descripcion"),
-        fotoo = sessionStorage.getItem("foto"),
-        tel = sessionStorage.getItem("telefono");
-      document.getElementById("foto_perfil").src = fotoo;
-      document.getElementById("nombreMenu").innerHTML =
-        `<p>Hola ${nombre}</p> <p>Descripción: ${descripcionn}</p><p>Telefono: ${tel}</p>`;
-      document.getElementById("nombre_spam").innerHTML =
-        `<img src="${fotoo}" alt="Imagen de perfil" class="img-fluid espaciado-img bx" width="50" height="50"> <span class="link_name">${nombre}</span>`;
+      setNombre(sessionStorage.getItem("nombre"));
+      setDescripcionn(sessionStorage.getItem("descripcion"));
+      setFotoo(sessionStorage.getItem("foto"));
+      setTel(sessionStorage.getItem("telefono"));
     }
   }, [router]);
 
@@ -127,71 +134,57 @@ export default function Navbar() {
             </li>
 
             <li>
-              <a
-                href="#"
-                onClick={() => $("#modal-Perfil").modal("show")}
-                id="nombre_spam"
-              >
-                Perfil
+              <a href="#" onClick={handleShow}>
+                <Image
+                  src={fotoo}
+                  alt="Imagen de perfil"
+                  className="img-fluid espaciado-img bx"
+                  width={50}
+                  height={50}
+                />
+                <span className="link_name"> {nombre} </span>
               </a>
             </li>
           </ul>
         </div>
       </nav>
 
-      <div
-        className="modal fade"
-        id="modal-Perfil"
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="modal-Perfil-titulo"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header fondo borde">
-              <h5 className="modal-title color-texto" id="modal-Perfil-titulo">
-                Perfil
-              </h5>
-              <button
-                type="button"
-                className="close color-texto"
-                data-dismiss="modal"
-                aria-label="Cerrar"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header className="fondo borde" closeButton>
+          <Modal.Title className="color-texto">Perfil</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="fondo borde">
+          <div className="row d-flex align-items-center">
+            <div className="col-4">
+              <Image
+                src={fotoo}
+                alt="Imagen de perfil"
+                id="foto_perfil"
+                className="img-fluid img-redondo foto_perfil"
+              />
             </div>
-            <div className="modal-body fondo borde">
-              <div className="row d-flex align-items-center">
-                <div className="col-4">
-                  <img
-                    src=""
-                    alt="Imagen de perfil"
-                    id="foto_perfil"
-                    className="img-fluid img-redondo foto_perfil"
-                  />
-                </div>
-                <div className="col-8 color-texto " id="nombreMenu">
-                  Contenido del perfil
-                </div>
-              </div>
-            </div>
-            <div className="modal-footer fondo borde">
-              <button
-                type="button"
-                className="btn btn-danger"
-                onClick={() => {
-                  cerrarSesion();
-                  $("#modal-Perfil").modal("hide");
-                }}
-              >
-                Cerrar Sesión
-              </button>
+            <div className="col-8 color-texto " id="nombreMenu">
+              <p>Hola {nombre}</p>
+              <p>Descripción: {descripcionn}</p>
+              <p>Telefono: {tel}</p>
             </div>
           </div>
-        </div>
-      </div>
+        </Modal.Body>
+        <Modal.Footer className="fondo borde">
+          <Button variant="secondary" onClick={handleClose}>
+            Cancelar
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => {
+              cerrarSesion();
+              handleClose();
+            }}
+          >
+            Cerrar sesion
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
