@@ -24,6 +24,7 @@ export default function Navbar() {
       // Agregar clase al body si el usuario no está autenticado
       document.body.classList.add("inicio");
       document.body.classList.remove("fondo");
+      router.push("/");
     }
     // Verifica si estamos en el navegador antes de ejecutar el código
     if (typeof window !== "undefined") {

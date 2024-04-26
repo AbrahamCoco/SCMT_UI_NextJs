@@ -28,5 +28,16 @@ export class Utils {
     });
   }
 
-  static swalSuccess() {}
+  static swalSuccess(message) {
+    Swal.fire({
+      position: "top-end",
+      toast: true,
+      showConfirmButton: false,
+      icon: "success",
+      title: "¡Éxito!",
+      text: message,
+      timer: 3000,
+      timerProgressBar: true,
+    });
+  }
 }

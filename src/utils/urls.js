@@ -4,5 +4,7 @@ export const Tarjet = {
   userApi: {
     login: baseUrl + "/consultarU",
     getAllUsers: baseUrl + "/consultarAll",
+    consultarInformeIncidencia: baseUrl + "/consultarInformeIncidencia",
+    consultarInformeAsistencia: baseUrl + "/consultarInformeAsistencia",
   },
 };

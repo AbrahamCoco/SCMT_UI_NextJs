@@ -1,5 +1,6 @@
 "use client";
 import { UserController } from "@/app/home/control_usuarios/userController";
+import { Utils } from "@/utils/utils";
 import { useState, useEffect } from "react";
 
 export default function ControlUsuarios() {
@@ -10,8 +11,10 @@ export default function ControlUsuarios() {
       try {
         const response = await UserController.getAll();
         setData(response);
+        Utils.swalSuccess("Datos cargados correctamente");
       } catch (error) {
         console.error("Error fetching data:", error);
+        Utils.swalError("Error al cargar los datos");
       }
     }
     fetchData();

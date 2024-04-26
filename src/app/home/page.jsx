@@ -67,11 +67,6 @@ export default function Home() {
             href="/home/configuracion"
           />
         </div>
-        <div className="row align-content-center">
-          <CardHome title="Info" icon="bxs-info" href="/home/#" />
-          <CardHome title="Info" icon="bx-info" href="/home/#" />
-          <CardHome title="Info" icon="bxs-info" href="/home/#" />
-        </div>
       </div>
     </>
   );
