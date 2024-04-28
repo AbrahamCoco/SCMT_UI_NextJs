@@ -6,5 +6,7 @@ export const Tarjet = {
     getAllUsers: baseUrl + "/consultarAll",
     consultarInformeIncidencia: baseUrl + "/consultarInformeIncidencia",
     consultarInformeAsistencia: baseUrl + "/consultarInformeAsistencia",
+    consultarRutas: baseUrl + "/consultarRutas",
+    consultarIncidencias: baseUrl + "/concultarIncidencias",
   },
 };
