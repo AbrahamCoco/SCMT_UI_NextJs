@@ -78,6 +78,10 @@ export default function Navbar() {
     router.push("/");
   }
 
+  const handleImageError = () => {
+    setFotoo("");
+  };
+
   return (
     <>
       <nav>
@@ -136,13 +140,18 @@ export default function Navbar() {
 
             <li>
               <a href="#" onClick={handleShow}>
-                <Image
-                  src={fotoo}
-                  alt="Imagen de perfil"
-                  className="img-fluid espaciado-img bx"
-                  width={50}
-                  height={50}
-                />
+                {fotoo ? (
+                  <Image
+                    src={fotoo}
+                    alt="Imagen de perfil"
+                    className="img-fluid espaciado-img bx"
+                    width={50}
+                    height={50}
+                    onError={handleImageError}
+                  />
+                ) : (
+                  <i className="bx bxs-user-circle"></i>
+                )}
                 <span className="link_name"> {nombre} </span>
               </a>
             </li>
@@ -157,12 +166,20 @@ export default function Navbar() {
         <Modal.Body className="fondo borde">
           <div className="row d-flex align-items-center">
             <div className="col-4">
-              <Image
-                src={fotoo}
-                alt="Imagen de perfil"
-                id="foto_perfil"
-                className="img-fluid img-redondo foto_perfil"
-              />
+              {fotoo ? (
+                <Image
+                  src={fotoo}
+                  alt="Imagen de perfil"
+                  id="foto_perfil"
+                  className="img-fluid img-redondo foto_perfil"
+                  onError={handleImageError}
+                />
+              ) : (
+                <i
+                  className="bx bxs-user-circle color-texto"
+                  style={{ fontSize: 8 + "em" }}
+                ></i>
+              )}
             </div>
             <div className="col-8 color-texto " id="nombreMenu">
               <p>Hola {nombre}</p>

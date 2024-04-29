@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { InformesController } from "../informesController";
 import { Utils } from "@/utils/utils";
 import Modal from "react-bootstrap/Modal";
@@ -91,10 +91,6 @@ export default function ReportesAsistencia() {
     }
   }, [generarPDFAsistencia]);
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
   const handleGeneratePDF = async () => {
     handleShow();
     await visualizarPDFAsistencia();
@@ -176,7 +172,7 @@ export default function ReportesAsistencia() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="6">
+                    <td colSpan="6" className="text-center">
                       Esperando rango de fechas para hacer la filtracion
                     </td>
                   </tr>

@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { InformesController } from "../informesController";
 import { Utils } from "@/utils/utils";
 import Button from "react-bootstrap/Button";
@@ -91,10 +91,6 @@ export default function ReportesIncidencias() {
     }
   }, [generarPDFIncidencias]);
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
   const handleGeneratePDFIncidencias = async () => {
     handleShow();
     await visualizarPDFIncidencias();
@@ -176,7 +172,7 @@ export default function ReportesIncidencias() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="6">
+                    <td colSpan="6" className="text-center">
                       Esperando rango de fechas para mostrar datos
                     </td>
                   </tr>
