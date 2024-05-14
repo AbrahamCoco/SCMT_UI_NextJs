@@ -40,4 +40,16 @@ export class Utils {
       timerProgressBar: true,
     });
   }
+
+  static swalFire(title, message, icon) {
+    Swal.fire({
+      title: "¿Desea eliminar la ruta seleccionada?",
+      text: "No podrá revertir esta acción, esta acción podría causar daños en el sistema.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!",
+    });
+  }
 }

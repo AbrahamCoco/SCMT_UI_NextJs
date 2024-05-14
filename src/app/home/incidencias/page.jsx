@@ -106,7 +106,13 @@ export default function Incidencias() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4">No hay incidencias para esta ruta</td>
+                  <td colSpan="4" className="text-center">
+                    <div className="d-flex justify-content-center">
+                      <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
               )}
             </tbody>
