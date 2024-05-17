@@ -25,7 +25,6 @@ export default function ReportesAsistencia() {
       setData(response);
       Utils.swalSuccess("Datos cargados correctamente");
     } catch (error) {
-      console.error("Error fetching data:", error);
       Utils.swalError("Error al cargar los datos");
     }
   }, [inicio, fin]);

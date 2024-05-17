@@ -43,15 +43,13 @@ export class CrearRutasController {
         Tarjet.userApi.actualizarRuta + "?id=" + id,
         {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify(data),
         },
       );
       const res = await respuesta.json();
-      if (res.success === true) {
-        Utils.swalSuccess("Ruta actualizada correctamente");
-      } else {
-        Utils.swalError("Error en la petición");
-      }
     } catch (error) {
       Utils.swalError("Error en la petición");
     }

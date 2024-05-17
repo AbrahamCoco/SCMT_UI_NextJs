@@ -12,7 +12,6 @@ export class IncidenciasController {
       );
       const res = await respuesta.json();
       if (res.success === true && res.data != "") {
-        console.log(res.data);
         return res.data;
       } else {
         Utils.swalError("Error en la petición");
@@ -32,7 +31,6 @@ export class IncidenciasController {
       );
       const res = await respuesta.json();
       if (res.success === true && res.data != "") {
-        console.log(res.data);
         return res.data;
       } else {
         Utils.swalError("Error en la petición");

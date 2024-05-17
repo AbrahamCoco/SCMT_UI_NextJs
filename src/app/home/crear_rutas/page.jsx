@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Accordion,
   AccordionBody,
@@ -19,7 +19,7 @@ export default function CrearRutas() {
   const [data, setData] = useState(null);
   const [show, setShow] = useState(false);
   const [action, setAction] = useState("add");
-  const [conductores, setConductores] = useState(null);
+  const [conductores, setConductores] = useState([]);
   const [nombreRuta, setNombreRuta] = useState("");
   const [idConductores, setIdConductores] = useState("");
   const [puntoAcceso, setPuntoAcceso] = useState("");
@@ -114,10 +114,8 @@ export default function CrearRutas() {
 
   const recupararDatos = async (id) => {
     const compania = sessionStorage.getItem("compania");
-    console.log(compania);
     try {
       const response = await CrearRutasController.getConsultarRutas(compania);
-      console.log(response);
       if (response && response.length > 0) {
         const rutaSeleccionada = response.find((ruta) => ruta.id === id);
         if (rutaSeleccionada) {
@@ -127,12 +125,11 @@ export default function CrearRutas() {
           setDescripcionRuta(rutaSeleccionada.descripcion);
           setIdConductores(rutaSeleccionada.tusuario_id_conductor);
           setIdActualizarRuta(rutaSeleccionada.id);
-          console.log(rutaSeleccionada);
         } else {
-          console.log("No se encontró la ruta seleccionada");
+          Utils.swalError("No se encontró la ruta seleccionada");
         }
       } else {
-        console.log("No se encontraron datos de rutas");
+        Utils.swalError("No se encontraron datos de rutas");
       }
     } catch (error) {
       Utils.swalError("Error al cargar los datos");
@@ -252,7 +249,7 @@ export default function CrearRutas() {
           <input
             type="hidden"
             className="form-control"
-            value={idActualizarRuta}
+            value={idActualizarRuta || ""}
             onChange={(e) => setIdActualizarRuta(e.target.value)}
           />
           <div className="form-group">
@@ -309,13 +306,12 @@ export default function CrearRutas() {
               onChange={(e) => setIdConductores(e.target.value)}
             >
               <option value="">Seleccionar conductor</option>
-              {conductores &&
-                conductores.map((conductor) => (
-                  <option key={conductor.id} value={conductor.id}>
-                    {conductor.nombre} {conductor.primer_apellido}{" "}
-                    {conductor.segundo_apellido}
-                  </option>
-                ))}
+              {conductores.map((conductor) => (
+                <option key={conductor.id} value={conductor.id}>
+                  {conductor.nombre} {conductor.primer_apellido}{" "}
+                  {conductor.segundo_apellido}
+                </option>
+              ))}
             </select>
           </div>
           <div className="form-group">
@@ -343,7 +339,7 @@ export default function CrearRutas() {
             onClick={guardarRuta}
             className="btn btn-primary"
           >
-            Guardar cambios
+            {action === "add" ? "Crear Ruta" : "Actualizar Ruta"}
           </button>
         </Modal.Footer>
       </Modal>
