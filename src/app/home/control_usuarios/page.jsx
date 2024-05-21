@@ -1,21 +1,24 @@
 "use client";
 import { UserController } from "@/app/home/control_usuarios/userController";
-import { useState, useEffect } from "react";
+import { Utils } from "@/utils/utils";
+import { useState, useEffect, useCallback } from "react";
 
 export default function ControlUsuarios() {
   const [data, setData] = useState(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await UserController.getAll();
-        setData(response);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await UserController.getAll();
+      setData(response);
+      Utils.swalSuccess("Datos cargados correctamente");
+    } catch (error) {
+      Utils.swalError("Error al cargar los datos");
     }
-    fetchData();
   }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   return (
     <div className="container py-4">
@@ -76,7 +79,13 @@ export default function ControlUsuarios() {
               ))
             ) : (
               <tr>
-                <td colSpan="7">Loading...</td>
+                <td colSpan="7">
+                  <div className="d-flex justify-content-center">
+                    <div className="spinner-border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                </td>
               </tr>
             )}
           </tbody>

@@ -34,6 +34,8 @@ export default function Login() {
           sessionStorage.setItem("telefono", res.data.telefono);
           sessionStorage.setItem("descripcion", res.data.descripcion);
           sessionStorage.setItem("foto", res.data.fotografia);
+          sessionStorage.setItem("compania", res.data.tcompania_id);
+          Utils.swalSuccess("Bienvenido, inicio de sesión exitoso");
           router.push("/home");
         } else {
           Utils.swalFailure("Lo sentimos", "No eres administrador");

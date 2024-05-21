@@ -324,3 +324,47 @@ a:hover {
     font-size: 2.75rem;
     color: #4ECDE6;
 }
+
+/* CSS para el modal del pdf */
+/* .alinear-boton {
+    margin: 0px 20px 10px 0px;
+}
+
+.tamanio-modal {
+    position: relative;
+    width: auto;
+    margin: .5rem;
+    pointer-events: none;
+}
+
+.contenido-modal {
+    height: 750px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 576px) {
+    .tamanio-modal {
+        max-width: 1000px;
+        width: 1000px;
+        margin: 1.75rem auto;
+        max-height: 750px;
+        height: 750px;
+    }
+} */
+
+.alineacion {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.color-card {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.color-texto:focus {
+    box-shadow: 0 0 0 0.2rem rgba(78, 205, 230, 0.75);
+}

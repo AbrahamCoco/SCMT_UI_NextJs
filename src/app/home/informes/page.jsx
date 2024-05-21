@@ -38,28 +38,14 @@ export default function Informes() {
             description={
               "Aqui puedes descargar un informe de las incidencias de las unidades"
             }
-            href={"/home/informes/#"}
+            href={"/home/informes/reportes_incidencias"}
           />
-          <CardInforme
-            title={"Informe de Rutas"}
-            description={"Aqui puedes descargar un informe de las rutas"}
-            href={"/home/informes/#"}
-          />
-        </Row>
-        <Row className="py-2">
           <CardInforme
             title={"Informe de Asistencia"}
             description={
               "Aquí puedes descargar un informe de la asistencia de los obreros de la planta"
             }
-            href={"/home/informes/#"}
-          />
-          <CardInforme
-            title={"Informe de Mantenimiento"}
-            description={
-              "Aquí puedes descargar un informe del mantenimiento de las unidades"
-            }
-            href={"/home/informes/#"}
+            href={"/home/informes/reportes_asistencia"}
           />
         </Row>
       </div>

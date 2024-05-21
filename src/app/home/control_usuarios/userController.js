@@ -12,7 +12,6 @@ export class UserController {
       );
       const res = await respuesta.json();
       if (res.success === true && res.data != "") {
-        console.log(res.data);
         return res.data;
       } else {
         Utils.swalError("Error en la petición");
@@ -22,7 +21,7 @@ export class UserController {
     }
   }
 
-  async insert() {}
+  static async insert() {}
 
-  async delete() {}
+  static async delete() {}
 }

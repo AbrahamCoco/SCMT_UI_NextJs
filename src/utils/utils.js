@@ -28,5 +28,28 @@ export class Utils {
     });
   }
 
-  static swalSuccess() {}
+  static swalSuccess(message) {
+    Swal.fire({
+      position: "top-end",
+      toast: true,
+      showConfirmButton: false,
+      icon: "success",
+      title: "¡Éxito!",
+      text: message,
+      timer: 3000,
+      timerProgressBar: true,
+    });
+  }
+
+  static swalFire(title, message, icon) {
+    Swal.fire({
+      title: "¿Desea eliminar la ruta seleccionada?",
+      text: "No podrá revertir esta acción, esta acción podría causar daños en el sistema.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!",
+    });
+  }
 }
