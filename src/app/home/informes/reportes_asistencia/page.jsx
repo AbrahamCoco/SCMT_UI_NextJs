@@ -157,15 +157,15 @@ export default function ReportesAsistencia() {
                     <tr key={e.id}>
                       <td>{index + 1}</td>
                       <td>
-                        {e.nombre +
+                        {e.tusuario_nombre +
                           " " +
-                          e.primer_apellido +
+                          e.tusuario_primerapellido +
                           " " +
-                          e.segundo_apellido}
+                          e.tusuario_segundoapellido}
                       </td>
-                      <td> {e.area} </td>
-                      <td> {e.jefe_inmediato} </td>
-                      <td> {e.nombre_ruta} </td>
+                      <td> {e.tusuario_area} </td>
+                      <td> {e.tusuario_jefeinmediato} </td>
+                      <td> {e.truta_nombre} </td>
                       <td> {e.fecha.slice(0, 10) + " " + e.hora} </td>
                     </tr>
                   ))

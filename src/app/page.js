@@ -21,20 +21,21 @@ export default function Login() {
       console.log(res);
 
       if (res.success === true) {
-        if (res.data.trol_id === 1) {
-          sessionStorage.setItem("idUser", res.data.id);
+        console.log(res.data[0].trol_id);
+        if (res.data[0].trol_id == 1) {
+          sessionStorage.setItem("idUser", res.data[0].id);
           sessionStorage.setItem(
             "nombre",
-            res.data.nombre +
+            res.data[0].nombre +
               " " +
-              res.data.primer_apellido +
+              res.data[0].primer_apellido +
               " " +
-              res.data.segundo_apellido,
+              res.data[0].segundo_apellido,
           );
-          sessionStorage.setItem("telefono", res.data.telefono);
-          sessionStorage.setItem("descripcion", res.data.descripcion);
-          sessionStorage.setItem("foto", res.data.fotografia);
-          sessionStorage.setItem("compania", res.data.tcompania_id);
+          sessionStorage.setItem("telefono", res.data[0].telefono);
+          sessionStorage.setItem("descripcion", res.data[0].descripcion);
+          sessionStorage.setItem("foto", res.data[0].fotografia);
+          sessionStorage.setItem("compania", res.data[0].tcompania_id);
           Utils.swalSuccess("Bienvenido, inicio de sesión exitoso");
           router.push("/home");
         } else {

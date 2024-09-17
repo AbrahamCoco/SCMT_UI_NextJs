@@ -58,7 +58,7 @@ export default function Incidencias() {
               {data ? (
                 data.map((ruta) => (
                   <option key={ruta.id} value={ruta.id}>
-                    {ruta.nombre_ruta}
+                    {ruta.nombre}
                   </option>
                 ))
               ) : (

@@ -157,14 +157,14 @@ export default function ReportesIncidencias() {
                     <tr key={index}>
                       <th scope="row">{index + 1}</th>
                       <td>
-                        {e.nombre +
+                        {e.tusuario_nombre +
                           " " +
-                          e.primer_apellido +
+                          e.tusuario_primerapellido +
                           " " +
-                          e.segundo_apellido}
+                          e.tusuario_segundoapellido}
                       </td>
-                      <td>{e.nombre_incidente}</td>
-                      <td>{e.nombre_ruta}</td>
+                      <td>{e.nombre}</td>
+                      <td>{e.truta_nombre}</td>
                       <td>{e.descripcion}</td>
                       <td>{e.fecha.slice(0, 10) + " " + e.hora}</td>
                     </tr>

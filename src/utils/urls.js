@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:5000/scmt";
+const baseUrl = "http://localhost:8080/SCMT-Services";
 
 export const Tarjet = {
   userApi: {

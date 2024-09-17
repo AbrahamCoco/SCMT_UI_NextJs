@@ -119,7 +119,7 @@ export default function CrearRutas() {
       if (response && response.length > 0) {
         const rutaSeleccionada = response.find((ruta) => ruta.id === id);
         if (rutaSeleccionada) {
-          setNombreRuta(rutaSeleccionada.nombre_ruta);
+          setNombreRuta(rutaSeleccionada.nombre);
           setPuntoAcceso(rutaSeleccionada.punto_acceso);
           setVehiculo(rutaSeleccionada.vehiculo);
           setDescripcionRuta(rutaSeleccionada.descripcion);
@@ -162,7 +162,7 @@ export default function CrearRutas() {
           <Accordion defaultActiveKey="0" className="color-card">
             {data.map((ruta, index) => (
               <AccordionItem key={ruta.id} eventKey={index.toString()}>
-                <AccordionHeader>{ruta.nombre_ruta}</AccordionHeader>
+                <AccordionHeader>{ruta.nombre}</AccordionHeader>
                 <AccordionBody>
                   <Row>
                     <div className="col-sm-7">
@@ -185,11 +185,11 @@ export default function CrearRutas() {
                       <p>{ruta.vehiculo}</p>
                       <h3>Conductor:</h3>
                       <p>
-                        {ruta.nombre +
+                        {ruta.tusuario_nombre_conductor +
                           " " +
-                          ruta.primer_apellido +
+                          ruta.tusuario_primerapellido_conductor +
                           " " +
-                          ruta.segundo_apellido}
+                          ruta.tusuario_segundoapellido_conductor}
                       </p>
                       <div className="btn-group">
                         <button
@@ -207,7 +207,7 @@ export default function CrearRutas() {
                           Editar ruta
                         </button>
                         <Link
-                          href={`/home/crear_rutas/pasajeros_ruta/${ruta.id}/${ruta.nombre_ruta}`}
+                          href={`/home/crear_rutas/pasajeros_ruta/${ruta.id}/${ruta.nombre}`}
                         >
                           <button
                             type="button"
