@@ -22,10 +22,10 @@ export default function ReportesIncidencias() {
         inicio,
         fin,
       );
-      setData(response);
-      Utils.swalSuccess("Datos cargados correctamente");
+      setData(response);      
     } catch (error) {
       Utils.swalError("Error al cargar los datos");
+      setData(null);
     }
   }, [inicio, fin]);
 

@@ -5,7 +5,7 @@ export class InformesController {
   static async getReportesIncidencias(inicio, fin) {
     try {
       const respuesta = await fetch(
-        Tarjet.userApi.consultarInformeIncidencia +
+        Tarjet.reportsApi.consultarInformeIncidencia +
           "?inicio=" +
           inicio +
           "&fin=" +
@@ -16,6 +16,7 @@ export class InformesController {
       );
       const res = await respuesta.json();
       if (res.success === true && res.data != "") {
+        Utils.swalSuccess("Datos cargados correctamente");
         return res.data;
       } else {
         Utils.swalError("Error en la petición");
@@ -28,7 +29,7 @@ export class InformesController {
   static async getReportesAsistencia(inicio, fin) {
     try {
       const respuesta = await fetch(
-        Tarjet.userApi.consultarInformeAsistencia +
+        Tarjet.reportsApi.consultarInformeAsistencia +
           "?inicio=" +
           inicio +
           "&fin=" +

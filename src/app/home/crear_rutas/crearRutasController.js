@@ -5,7 +5,7 @@ export class CrearRutasController {
   static async getConsultarRutas(compania) {
     try {
       const respuesta = await fetch(
-        Tarjet.userApi.consultarRutas + "?compania=" + compania,
+        Tarjet.routesApi.consultarRutas + "?compania=" + compania,
         {
           method: "GET",
         },
@@ -74,7 +74,7 @@ export class CrearRutasController {
   static async getConsultarConductores(compania) {
     try {
       const respuesta = await fetch(
-        Tarjet.userApi.consultarConductores + "?compania=" + compania,
+        Tarjet.routesApi.consultarConductores + "?compania=" + compania,
         {
           method: "GET",
         },
