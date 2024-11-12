@@ -18,8 +18,7 @@ export default function PasajerosRuta() {
   const fetchConsultarPasajerosRutas = useCallback(async () => {
     const id = params.id;
     try {
-      const response =
-        await PasajerosRutasController.getConsultarPasajerosRutas(id);
+      const response = await PasajerosRutasController.getConsultarPasajerosRutas(id);
       setData(response.data);
     } catch (error) {
       Utils.swalError("Error al cargar los datos");
@@ -29,8 +28,7 @@ export default function PasajerosRuta() {
   const fetchConsultarPasajeros = useCallback(async () => {
     const compania = sessionStorage.getItem("compania");
     try {
-      const response =
-        await PasajerosRutasController.getConsultarPasajeros(compania);
+      const response = await PasajerosRutasController.getConsultarPasajeros(compania);
       setPasajeros(response.data);
     } catch (error) {
       Utils.swalError("Error al cargar los datos");
@@ -45,8 +43,8 @@ export default function PasajerosRuta() {
     cuerpo.append("tusuario_id", pasajero);
     try {
       await PasajerosRutasController.insertPasajeroRuta(id, pasajero, cuerpo);
-      Utils.swalSuccess("Pasajero agregado correctamente");
       fetchConsultarPasajerosRutas();
+      handleClose();
     } catch (error) {
       Utils.swalError("Error al insertar el pasajero");
     }
@@ -55,7 +53,6 @@ export default function PasajerosRuta() {
   const handleDelete = (id) => async () => {
     try {
       await PasajerosRutasController.deletePasajeroRuta(id);
-      Utils.swalSuccess("Pasajero eliminado correctamente");
       fetchConsultarPasajerosRutas();
     } catch (error) {
       Utils.swalError("Error al eliminar el pasajero");
@@ -160,11 +157,7 @@ export default function PasajerosRuta() {
           <Button variant="danger" onClick={handleClose}>
             Cancelar
           </Button>
-          <button
-            type="button"
-            onClick={handleInsertPasajeroRuta()}
-            className="btn btn-primary"
-          >
+          <button type="button" onClick={handleInsertPasajeroRuta()} className="btn btn-primary" >
             Agregar pasajero
           </button>
         </Modal.Footer>

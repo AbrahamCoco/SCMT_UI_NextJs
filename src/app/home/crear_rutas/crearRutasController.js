@@ -23,7 +23,7 @@ export class CrearRutasController {
 
   static async deleteRuta(id) {
     try {
-      const respuesta = await fetch(Tarjet.userApi.eliminarRuta + "?id=" + id, {
+      const respuesta = await fetch(Tarjet.routesApi.eliminarRuta + "?id=" + id, {
         method: "GET",
       });
       const res = await respuesta.json();
@@ -40,7 +40,7 @@ export class CrearRutasController {
   static async updateRuta(id, data) {
     try {
       const respuesta = await fetch(
-        Tarjet.userApi.actualizarRuta + "?id=" + id,
+        Tarjet.routesApi.actualizarRuta + "?id=" + id,
         {
           method: "POST",
           headers: {
@@ -50,6 +50,11 @@ export class CrearRutasController {
         },
       );
       const res = await respuesta.json();
+      if (res.success === true) {
+        Utils.swalSuccess("Ruta actualizada correctamente");
+      } else {
+        Utils.swalError("Error al actualizar la ruta");
+      }
     } catch (error) {
       Utils.swalError("Error en la petición");
     }
@@ -57,7 +62,7 @@ export class CrearRutasController {
 
   static async insertRuta(cuerpo) {
     try {
-      const respuesta = await fetch(Tarjet.userApi.insertarRuta, {
+      const respuesta = await fetch(Tarjet.routesApi.insertarRuta, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -65,7 +70,11 @@ export class CrearRutasController {
         body: JSON.stringify(cuerpo),
       });
       const res = await respuesta.json();
-      Utils.swalSuccess("Ruta insertada correctamente");
+      if (res.success === true) {
+        Utils.swalSuccess("Ruta insertada correctamente");
+      } else {
+        Utils.swalError("Error al insertar la ruta");
+      }
     } catch {
       Utils.swalError("Error en la petición: " + error.message);
     }

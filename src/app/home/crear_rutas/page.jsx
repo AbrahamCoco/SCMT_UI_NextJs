@@ -12,7 +12,6 @@ import {
 } from "react-bootstrap";
 import { CrearRutasController } from "./crearRutasController";
 import { Utils } from "@/utils/utils";
-import Swal from "sweetalert2";
 import Link from "next/link";
 
 export default function CrearRutas() {
@@ -53,25 +52,19 @@ export default function CrearRutas() {
   }, []);
 
   const eliminar = (id) => async () => {
-    Swal.fire({
-      title: "¿Desea eliminar la ruta seleccionada?",
-      text: "No podrá revertir esta acción, esta acción podría causar daños en el sistema.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Si, eliminar!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          const response = await CrearRutasController.deleteRuta(id);
-          Utils.swalSuccess("Ruta eliminada correctamente");
-          fetchConsultarRutas();
-        } catch (error) {
-          Utils.swalError("Error al eliminar la ruta");
-        }
+    try {
+      const question = await Utils.swalFire("¿Desea eliminar la ruta seleccionada?","No podrá revertir esta acción, esta acción podría causar problemas en el sistema.","eliminar")
+      if (question){
+        const response = await CrearRutasController.deleteRuta(id);
+        handleClose();
+        fetchConsultarRutas();
+      }else{
+        handleClose();
       }
-    });
+    } catch (e) {
+      Utils.swalError("Error al eliminar la ruta");
+    }
+
   };
 
   const guardarRuta = async () => {
@@ -86,13 +79,11 @@ export default function CrearRutas() {
       };
       if (idActualizarRuta == null) {
         const response = await CrearRutasController.insertRuta(cuerpo);
-        Utils.swalSuccess("Ruta creada correctamente");
       } else {
         const response = await CrearRutasController.updateRuta(
           idActualizarRuta,
           cuerpo,
         );
-        Utils.swalSuccess("Ruta actualizada correctamente");
       }
       handleClose();
       fetchConsultarRutas();
@@ -104,8 +95,7 @@ export default function CrearRutas() {
   const listarConductores = useCallback(async () => {
     const compania = sessionStorage.getItem("compania");
     try {
-      const response =
-        await CrearRutasController.getConsultarConductores(compania);
+      const response = await CrearRutasController.getConsultarConductores(compania);
       setConductores(response);
     } catch (error) {
       Utils.swalError("Error al cargar los datos");
@@ -206,13 +196,10 @@ export default function CrearRutas() {
                         >
                           Editar ruta
                         </button>
-                        <Link
-                          href={`/home/crear_rutas/pasajeros_ruta/${ruta.id}/${ruta.nombre_ruta}`}
-                        >
+                        <Link href={`/home/crear_rutas/pasajeros_ruta/${ruta.id}/${ruta.nombre_ruta}`} >
                           <button
                             type="button"
-                            className="btn btn-success ms-3"
-                          >
+                            className="btn btn-success ms-3" >
                             Pasajeros de la ruta
                           </button>
                         </Link>

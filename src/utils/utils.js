@@ -23,7 +23,7 @@ export class Utils {
       icon: "error",
       title: "Oops...",
       text: message,
-      timer: 3000,
+      timer: 5000,
       timerProgressBar: true,
     });
   }
@@ -41,15 +41,20 @@ export class Utils {
     });
   }
 
-  static swalFire(title, message, icon) {
-    Swal.fire({
-      title: "¿Desea eliminar la ruta seleccionada?",
-      text: "No podrá revertir esta acción, esta acción podría causar daños en el sistema.",
+  static async swalFire(title, message, button) {
+    const result = await Swal.fire({
+      title: title,
+      text: message,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Si, eliminar!",
+      confirmButtonText: "Sí, " + button + "!"
     });
+    if (result.isConfirmed) {
+      return true;
+    } else {
+      return false; 
+    }
   }
 }
