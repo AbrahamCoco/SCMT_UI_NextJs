@@ -39,7 +39,7 @@ export default function PasajerosRuta() {
 
   const handleInsertPasajeroRuta = () => async () => {
     const id = params.id;
-    const pasajero = document.getElementById("pasajeros").value;
+    // const pasajero = document.getElementById("pasajeros").value;
     const cuerpo = new URLSearchParams();
     cuerpo.append("truta_id", id);
     cuerpo.append("tusuario_id", pasajero);

@@ -78,7 +78,7 @@ export default function ReportesAsistencia() {
       const blob = new Blob([pdfData], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
 
-      const iframe = document.getElementById("pdfModal");
+      // const iframe = document.getElementById("pdfModal");
       iframe.src = url;
     }
   }, [generarPDFAsistencia]);

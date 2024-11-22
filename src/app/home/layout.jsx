@@ -1,6 +1,4 @@
-import Navbar from "@/components/Navbar";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../../css/styles.css";
+import Menu from "@/components/Menu";
 
 export const metadata = {
   title: "SCMT - Home",
@@ -9,7 +7,7 @@ export const metadata = {
 export default function HomeLayout({ children }) {
   return (
     <>
-      <Navbar />
+      <Menu />
       {children}
     </>
   );

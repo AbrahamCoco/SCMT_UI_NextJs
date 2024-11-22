@@ -24,7 +24,7 @@ export default function Incidencias() {
   }, []);
 
   const fetchConsultarIncidencias = useCallback(async () => {
-    let conductor = document.getElementById("listaRutass").value;
+    // let conductor = document.getElementById("listaRutass").value;
     try {
       const response =
         await IncidenciasController.getConsultarIncidencias(conductor);

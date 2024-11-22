@@ -1,53 +1,39 @@
 "use client";
-import { Card, Col, Container, Image, Row } from "react-bootstrap";
 import { useRouter } from "next/navigation";
-import { Tarjet } from "@/utils/urls";
-import { Utils } from "@/utils/utils";
+import { useState } from "react";
+import { Card, Col, Container, Image, Row } from "react-bootstrap";
+import { LoginController } from "./loginController";
 
 export default function Login() {
   const router = useRouter();
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const usuario = e.target.usuario.value;
-    const contrasenia = e.target.contrasenia.value;
-    const cuerpo = new URLSearchParams("usuario=" + usuario);
-    cuerpo.append("contraseña", contrasenia);
-    try {
-      const respuesta = await fetch(Tarjet.userApi.login, {
-        method: "POST",
-        body: cuerpo,
-      });
-      const res = await respuesta.json();
-      console.log(res);
+  const [usuario, setUsuario] = useState("");
+  const [contrasenia, setContrasenia] = useState("");
 
+  const login = async () => {
+    try {
+      const response = await LoginController.login(usuario, contrasenia);
+      const res = await response.json();
       if (res.success === true) {
-        console.log(res.data[0].trol_id);
-        if (res.data[0].trol_id == 1) {
-          sessionStorage.setItem("idUser", res.data[0].id);
-          sessionStorage.setItem(
-            "nombre",
-            res.data[0].nombre +
-              " " +
-              res.data[0].primer_apellido +
-              " " +
-              res.data[0].segundo_apellido,
-          );
-          sessionStorage.setItem("telefono", res.data[0].telefono);
-          sessionStorage.setItem("descripcion", res.data[0].descripcion);
-          sessionStorage.setItem("foto", res.data[0].fotografia);
-          sessionStorage.setItem("compania", res.data[0].tcompania_id);
-          Utils.swalSuccess("Bienvenido, inicio de sesión exitoso");
-          router.push("/home");
-        } else {
-          Utils.swalFailure("Lo sentimos", "No eres administrador");
-        }
+        router.push("/home");
+
+        sessionStorage.setItem(
+          "nombre",
+          `${res.data[0].nombre} ${res.data[0].primer_apellido} ${res.data[0].segundo_apellido}`,
+        );
+        sessionStorage.setItem(
+          "descripcion",
+          res.data[0].tusuario_admin_descripcion,
+        );
+        sessionStorage.setItem("telefono", res.data[0].tusuario_admin_telefono);
+        sessionStorage.setItem("fotoo", res.data[0].tusuario_admin_fotografia);
       } else {
-        Utils.swalFailure("Lo sentimos", "Usuario o contraseña invalidos");
+        console.log("Error al iniciar sesión");
       }
     } catch (error) {
-      Utils.swalError("Error en la petición");
+      console.log("Error en la petición");
     }
   };
+
   return (
     <Container>
       <Row className="justify-content-center mt-5">
@@ -60,39 +46,44 @@ export default function Login() {
             </div>
             <div className="card-header text-center">Iniciar sesión</div>
             <div className="transparencia card-body">
-              <form onSubmit={onSubmit}>
-                <div className="form-group">
-                  <label htmlFor="username" className="form-label">
-                    Usuario
-                  </label>
-                  <input
-                    type="text"
-                    id="usuario"
-                    className="form-control"
-                    placeholder="Ingresa usuario"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="contrasenia" className="form-label">
-                    Contraseña
-                  </label>
-                  <input
-                    type="password"
-                    id="contrasenia"
-                    className="form-control"
-                    placeholder="Ingresa contraseña"
-                  />
-                </div>
-                <div className="container">
-                  <div className="row justify-content-center">
-                    <div className="col-md-4 text-center">
-                      <button className="btn btn-primary boton-ovalo">
-                        Iniciar Sesión
-                      </button>
-                    </div>
+              <div className="form-group">
+                <label htmlFor="username" className="form-label">
+                  Usuario
+                </label>
+                <input
+                  type="text"
+                  id="usuario"
+                  className="form-control"
+                  placeholder="Usuario"
+                  value={usuario}
+                  onChange={(e) => setUsuario(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="contrasenia" className="form-label">
+                  Contraseña
+                </label>
+                <input
+                  type="password"
+                  id="contrasenia"
+                  className="form-control"
+                  placeholder="Contraseña"
+                  value={contrasenia}
+                  onChange={(e) => setContrasenia(e.target.value)}
+                />
+              </div>
+              <div className="container">
+                <div className="row justify-content-center">
+                  <div className="col-md-4 text-center">
+                    <button
+                      className="btn btn-primary boton-ovalo mt-3"
+                      onClick={login}
+                    >
+                      Iniciar Sesión
+                    </button>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </Card>
         </Col>

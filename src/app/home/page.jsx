@@ -5,12 +5,12 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
-    if (sessionStorage.getItem("idUser")) {
-      document.body.classList.add("fondo");
-      document.body.classList.remove("inicio");
-    }
-  });
+  // useEffect(() => {
+  //   if (sessionStorage.getItem("idUser")) {
+  //     document.body.classList.add("fondo");
+  //     document.body.classList.remove("inicio");
+  //   }
+  // });
   function CardHome({ title, icon, href }) {
     return (
       <div className="col-4">
