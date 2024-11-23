@@ -7,9 +7,9 @@ import { Button, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 export default function Menu() {
   const router = useRouter();
   const [nombre, setNombre] = useState("");
-  const [descripcionn, setDescripcionn] = useState("");
+  const [descripcion, setDescripcion] = useState("");
   const [tel, setTel] = useState("");
-  const [fotoo, setFotoo] = useState("");
+  const [foto, setFoto] = useState("");
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -25,15 +25,26 @@ export default function Menu() {
   };
 
   useEffect(() => {
-    if (router.pathname != "/") {
+    if (router.pathname !== "/") {
       document.body.className = "fondo";
     }
 
+    if (sessionStorage.getItem("idUser") === null) {
+      document.body.className = "inicio";
+      router.push("/");
+    }
+
     setNombre(sessionStorage.getItem("nombre"));
-    setDescripcionn(sessionStorage.getItem("descripcion"));
+    setDescripcion(sessionStorage.getItem("descripcion"));
     setTel(sessionStorage.getItem("telefono"));
-    setFotoo(sessionStorage.getItem("fotoo"));
-  }, []);
+    setFoto(sessionStorage.getItem("foto"));
+  }, [router.pathname]);
+
+  const renderTooltip = (id, text) => <Tooltip id={id}>{text}</Tooltip>;
+
+  const handleImageError = (e) => {
+    setFoto("");
+  };
 
   return (
     <>
@@ -51,7 +62,7 @@ export default function Menu() {
             <li>
               <OverlayTrigger
                 placement="right"
-                overlay={<Tooltip id="tooltip-inicio">Inicio</Tooltip>}
+                overlay={renderTooltip("tooltip-inicio", "Inicio")}
               >
                 <Link href="/home">
                   <i className="bx bx-grid"></i>
@@ -62,11 +73,10 @@ export default function Menu() {
             <li>
               <OverlayTrigger
                 placement="right"
-                overlay={
-                  <Tooltip id="tooltip-control-usuarios">
-                    Control de usuarios
-                  </Tooltip>
-                }
+                overlay={renderTooltip(
+                  "tooltip-control-usuarios",
+                  "Control de usuarios",
+                )}
               >
                 <Link href="/home/control_usuarios">
                   <i className="bx bxs-user-detail"></i>
@@ -77,11 +87,10 @@ export default function Menu() {
             <li>
               <OverlayTrigger
                 placement="right"
-                overlay={
-                  <Tooltip id="tooltip-ubicacion-unidades">
-                    Ubicación de unidades
-                  </Tooltip>
-                }
+                overlay={renderTooltip(
+                  "tooltip-ubicacion-unidades",
+                  "Ubicación de unidades",
+                )}
               >
                 <Link href="#" data-toggle="modal" data-target="#modal2">
                   <i className="bx bx-map"></i>
@@ -92,9 +101,7 @@ export default function Menu() {
             <li>
               <OverlayTrigger
                 placement="right"
-                overlay={
-                  <Tooltip id="tooltip-crear-rutas">Crear rutas</Tooltip>
-                }
+                overlay={renderTooltip("tooltip-crear-rutas", "Crear rutas")}
               >
                 <Link href="/home/crear_rutas">
                   <i className="bx bxs-map-alt"></i>
@@ -105,9 +112,7 @@ export default function Menu() {
             <li>
               <OverlayTrigger
                 placement="right"
-                overlay={
-                  <Tooltip id="tooltip-incidencias">Incidencias</Tooltip>
-                }
+                overlay={renderTooltip("tooltip-incidencias", "Incidencias")}
               >
                 <Link href="/home/incidencias">
                   <i className="bx bxs-bookmark"></i>
@@ -118,7 +123,7 @@ export default function Menu() {
             <li>
               <OverlayTrigger
                 placement="right"
-                overlay={<Tooltip id="tooltip-informes">Informes</Tooltip>}
+                overlay={renderTooltip("tooltip-informes", "Informes")}
               >
                 <Link href="/home/informes">
                   <i className="bx bxs-archive"></i>
@@ -129,21 +134,21 @@ export default function Menu() {
             <li>
               <OverlayTrigger
                 placement="right"
-                overlay={<Tooltip id="tooltip-perfil">{nombre}</Tooltip>}
+                overlay={renderTooltip("tooltip-perfil", nombre)}
               >
                 <a href="#" onClick={handleShow}>
-                  {/* {fotoo ? (
+                  {foto ? (
                     new Image({
-                      src: fotoo,
+                      src: foto,
                       alt: "Imagen de perfil",
                       className: "img-fluid espaciado-img bx",
                       width: 50,
                       height: 50,
-                      // onError: handleImageError
+                      onError: handleImageError,
                     })
-                  ) : ( */}
-                  <i className="bx bxs-user-circle"></i>
-                  {/* )} */}
+                  ) : (
+                    <i className="bx bxs-user-circle"></i>
+                  )}
                   <span className="link_name"> {nombre} </span>
                 </a>
               </OverlayTrigger>
@@ -159,26 +164,26 @@ export default function Menu() {
         <Modal.Body className="fondo borde">
           <div className="row d-flex align-items-center">
             <div className="col-4">
-              {/* {fotoo ? (
+              {foto ? (
                 new Image({
-                  src: fotoo,
+                  src: foto,
                   alt: "Imagen de perfil",
                   id: "foto_perfil",
                   className: "img-fluid img-redondo foto_perfil",
-                  // onError: handleImageError
-                  roundedCircle: true
+                  onError: handleImageError,
+                  roundedCircle: true,
                 })
-              ) : ( */}
-              <i
-                className="bx bxs-user-circle color-texto"
-                style={{ fontSize: 8 + "em" }}
-              ></i>
-              {/* )} */}
+              ) : (
+                <i
+                  className="bx bxs-user-circle color-texto"
+                  style={{ fontSize: "8em" }}
+                ></i>
+              )}
             </div>
-            <div className="col-8 color-texto " id="nombreMenu">
+            <div className="col-8 color-texto" id="nombreMenu">
               <p>Hola {nombre}</p>
-              <p>Descripción: {descripcionn}</p>
-              <p>Telefono: {tel}</p>
+              <p>Descripción: {descripcion}</p>
+              <p>Teléfono: {tel}</p>
             </div>
           </div>
         </Modal.Body>
@@ -193,7 +198,7 @@ export default function Menu() {
               handleClose();
             }}
           >
-            Cerrar sesion
+            Cerrar sesión
           </Button>
         </Modal.Footer>
       </Modal>

@@ -16,6 +16,7 @@ export default function Login() {
       if (res.success === true) {
         router.push("/home");
 
+        sessionStorage.setItem("idUser", res.data[0].id);
         sessionStorage.setItem(
           "nombre",
           `${res.data[0].nombre} ${res.data[0].primer_apellido} ${res.data[0].segundo_apellido}`,

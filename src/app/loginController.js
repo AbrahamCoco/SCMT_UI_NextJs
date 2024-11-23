@@ -14,7 +14,12 @@ export class LoginController {
           contraseña: contraseña,
         }),
       });
-      return response;
+      if (response.ok) {
+        Utils.swalSuccess("Inicio de sesión exitoso");
+        return response;
+      } else {
+        Utils.swalError("Error al iniciar sesión");
+      }
     } catch (error) {
       Utils.swalError("Error en la petición (Controller)");
     }
