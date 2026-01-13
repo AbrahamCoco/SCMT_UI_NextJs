@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
-    "jspdf": "^3.0.4",
-    "jspdf-autotable": "^5.0.2",
+    "jspdf": "^4.0.0",
+    "jspdf-autotable": "^5.0.7",
     "next": "16.0.10",
     "next-images": "^1.8.5",
     "pdfjs-dist": "^4.2.67",
